@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-100.times do
-  product = Product.new({name: Faker::Coffee.blend_name, price: (rand(1..99) + rand(1..99)/100.round(2)), image_url: Faker::Internet.url, description: Faker::Coffee.notes})
-  product.save
-end
+# 100.times do
+#   product = Product.new({name: Faker::Coffee.blend_name, price: (rand(1..99) + rand(1..99)/100.round(2)), image_url: Faker::Internet.url, description: Faker::Coffee.notes})
+#   product.save
+# end
