@@ -50,10 +50,8 @@ if create == 'yes'
       input_image_url: image_url
     })
   end
-
   p 'New product created.'
   p response.body
-
 end
 p '-' * 50
 
@@ -85,10 +83,8 @@ if update == 'yes'
       input_description: update_description,
       input_price: update_price
     })
-
   p 'Product has been updated'
   p response.body
-
 end
 p '-' * 50
 

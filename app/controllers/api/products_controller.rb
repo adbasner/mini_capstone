@@ -32,7 +32,7 @@ class Api::ProductsController < ApplicationController
     @product.description = params[:input_description] || @product.description
     @product.image_url = params[:input_image_url] || @product.image_url
 
-    # alternative method using rails update method
+    # alternative method using rails update method, first one is probably better.
     # @product.update(
     #   name: params[:input_name] || @product.name,
     #   price: params[:input_price] || @product.price,
