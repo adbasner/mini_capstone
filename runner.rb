@@ -7,35 +7,51 @@ require 'faker'
 
 # create
 
+p 'Enter a coffee name:'
+name = gets.chomp
+
+p 'Enter a coffee description:'
+description = gets.chomp
+
+p 'Enter a price (integer):'
+price = gets.chomp.to_i
+
+p 'Etner an image url:'
+image_url = gets.chomp
+
 response = Unirest.post('http://localhost:3000/api/products',
   parameters: {
-    input_name: Faker::Coffee.blend_name,
-    input_description: Faker::Coffee.notes,
-    input_price: rand(1..99),
-    input_image_url: Faker::Internet.url
+    # input_name: Faker::Coffee.blend_name,
+    # input_description: Faker::Coffee.notes,
+    # input_price: rand(1..99),
+    # input_image_url: Faker::Internet.url
+    input_name: name,
+    input_description: description,
+    input_price: price,
+    input_image_url: image_url
   })
 
 p response.body
 
 # update
 
-p 'What coffee id do you want to change?'
-product_id = gets.chomp
-p 'Enter a new name then new price.'
-response = Unirest.patch("localhost:3000/api/products/#{product_id}",
-  parameters: {
-    input_name: gets.chomp,
-    input_price: gets.chomp.to_i
-  })
+# p 'What coffee id do you want to change?'
+# product_id = gets.chomp
+# p 'Enter a new name then new price.'
+# response = Unirest.patch("localhost:3000/api/products/#{product_id}",
+#   parameters: {
+#     input_name: gets.chomp,
+#     input_price: gets.chomp.to_i
+#   })
 
-p response.body
+# p response.body
 
-# destroy
+# # destroy
 
-p 'What coffee id do you want to delete?'
-product_id = gets.chomp
+# p 'What coffee id do you want to delete?'
+# product_id = gets.chomp
 
-response = Unirest.delete("localhost:3000/api/products/#{product_id}")
+# response = Unirest.delete("localhost:3000/api/products/#{product_id}")
 
-p "You deleted coffee ##{product_id}."
-p response.body
+# p "You deleted coffee ##{product_id}."
+# p response.body
