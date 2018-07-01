@@ -53,17 +53,3 @@ class Api::ProductsController < ApplicationController
     render json: { message: 'You deleted that coffee.' }
   end
 end
-
-# namespace :api do
-#   get '/products' => 'products#index'
-#   get '/products/id' => 'products#show'
-# end
-
- # post = adding stuff, as in a form, new item, passwords...
-    # post '/products' => 'products#create'
-    # # update = changes db info
-    # patch '/products/:id' => 'products#update'
-    # # destroy/delete = removes from db
-    # delete '/products/:id' => 'products#destroy'
-
-# Product.new({name: Faker::Coffee.blend_name, price: (rand(1..99) + rand(1..99)/100.round(2)), image_url: Faker::Internet.url, description: Faker::Coffee.notes})
