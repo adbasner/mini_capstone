@@ -13,46 +13,56 @@ create = gets.chomp.downcase
 
 if create == 'yes'
   p '-' * 50
-  p 'Enter a coffee name:'
-  name = gets.chomp
-  p '-' * 50
-
-  p 'Enter a coffee description:'
-  description = gets.chomp
-  p '-' * 50
-
-  p 'Enter a price (integer):'
-  price = gets.chomp.to_i
-  p '-' * 50
-
-  p 'Enter an image url:'
-  image_url = gets.chomp
-  p '-' * 50
-
-  response = Unirest.post('http://localhost:3000/api/products',
+  p 'Do you want to autogenerate a coffee? Type yes if you do.'
+  auto = gets.chomp.downcase
+  if auto == 'yes'
+    response = Unirest.post('http://localhost:3000/api/products',
     parameters: {
-      # input_name: Faker::Coffee.blend_name,
-      # input_description: Faker::Coffee.notes,
-      # input_price: rand(1..99),
-      # input_image_url: Faker::Internet.url
+      input_name: Faker::Coffee.blend_name,
+      input_description: Faker::Coffee.notes,
+      input_price: rand(1..99),
+      input_image_url: Faker::Internet.url
+    })
+    p '-' * 50
+  else
+    p '-' * 50
+    p 'Enter a coffee name:'
+    name = gets.chomp
+    p '-' * 50
+
+    p 'Enter a coffee description:'
+    description = gets.chomp
+    p '-' * 50
+
+    p 'Enter a price (integer):'
+    price = gets.chomp.to_i
+    p '-' * 50
+
+    p 'Enter an image url:'
+    image_url = gets.chomp
+    p '-' * 50
+
+    response = Unirest.post('http://localhost:3000/api/products',
+    parameters: {
       input_name: name,
       input_description: description,
       input_price: price,
       input_image_url: image_url
     })
+  end
 
   p 'New product created.'
   p response.body
-  p '-' * 50
-end
 
-# update
-p 'Do you want to update new coffee? Type yes if you do.'
-update = gets.chomp.downcase
+end
 p '-' * 50
 
-if update == 'yes'
+# update
+p 'Do you want to update a coffee? Type yes if you do.'
+update = gets.chomp.downcase
 
+if update == 'yes'
+  p '-' * 50
   p 'What coffee id do you want to change?'
   product_id = gets.chomp
   p '-' * 50
@@ -78,15 +88,26 @@ if update == 'yes'
 
   p 'Product has been updated'
   p response.body
-  p '-' * 50
 
 end
-# # destroy
+p '-' * 50
 
-# p 'What coffee id do you want to delete?'
-# product_id = gets.chomp
+# destroy
 
-# response = Unirest.delete("localhost:3000/api/products/#{product_id}")
+p 'Do you want to delete a coffee? Type yes if you do.'
+delete = gets.chomp.downcase
 
-# p "You deleted coffee ##{product_id}."
-# p response.body
+if delete == 'yes'
+  p '-' * 50
+  p 'What coffee id do you want to delete?'
+  product_id = gets.chomp
+  p '-' * 50
+
+  response = Unirest.delete("localhost:3000/api/products/#{product_id}")
+
+  p "You deleted coffee ##{product_id}."
+  p '-' * 50
+  p 'Server reponse:'
+  p response.body
+  p '-' * 50
+end
