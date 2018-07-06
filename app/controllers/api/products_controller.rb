@@ -21,7 +21,7 @@ class Api::ProductsController < ApplicationController
     @product.save
     render 'show.json.jbuilder'
   end
-
+ 
   def update
     # show
     product_id = params[:id]
