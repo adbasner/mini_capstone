@@ -13,3 +13,4 @@ json.array! @products.each do |product|
     json.total product.total
   end
 end
+ 
