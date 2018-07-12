@@ -13,9 +13,18 @@
 # end
 
 # associate products with supplier
-suppliers = Supplier.all
+# suppliers = Supplier.all
+# products = Product.all
+# products.each do |product|
+#   product.supplier_id = suppliers.sample.id
+#   product.save
+# end
+
+# Put image urls from products into the images DB
 products = Product.all
 products.each do |product|
-  product.supplier_id = suppliers.sample.id
-  product.save
+  image = Image.new(url: product.image_url, product_id: product.id)
+  image.save
+  image = Image.new(url: Faker::Internet.url, product_id: product.id)
+  image.save
 end
