@@ -7,7 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-100.times do
-  product = Product.new({name: Faker::Coffee.blend_name, price: (rand(1..99) + rand(1..99)/100.round(2)), image_url: Faker::Internet.url, description: Faker::Coffee.notes})
+# 100.times do
+#   product = Product.new({name: Faker::Coffee.blend_name, price: (rand(1..99) + rand(1..99)/100.round(2)), image_url: Faker::Internet.url, description: Faker::Coffee.notes})
+#   product.save
+# end
+
+# associate products with supplier
+suppliers = Supplier.all
+products = Product.all
+products.each do |product|
+  product.supplier_id = suppliers.sample.id
   product.save
 end
