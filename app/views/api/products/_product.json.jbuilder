@@ -3,6 +3,7 @@ json.name product.name
 json.description product.description
 json.price product.price
 json.supplier product.supplier
+json.images product.images
 # json.image_url product.image_url
 json.created_at product.created_at
 json.updated_at product.created_at
