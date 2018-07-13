@@ -19,7 +19,7 @@ class Api::ProductsController < ApplicationController
       name: params[:input_name],
       price: params[:input_price],
       description: params[:input_description],
-      image_url: params[:input_image_url]
+      # image_url: params[:input_image_url]
     )
     @product.save
     render 'show.json.jbuilder'
@@ -33,7 +33,7 @@ class Api::ProductsController < ApplicationController
     @product.name = params[:input_name] || @product.name
     @product.price = params[:input_price] || @product.price
     @product.description = params[:input_description] || @product.description
-    @product.image_url = params[:input_image_url] || @product.image_url
+    # @product.image_url = params[:input_image_url] || @product.image_url
 
     # alternative method using rails update method, first one is probably better.
     # @product.update(
