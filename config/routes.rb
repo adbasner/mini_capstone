@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     patch '/products/:id' => 'products#update'
     # destroy/delete = removes from db
     delete '/products/:id' => 'products#destroy'
+    post "/users" => "users#create"
   end
 end
  
