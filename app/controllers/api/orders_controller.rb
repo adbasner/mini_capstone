@@ -22,6 +22,8 @@ class Api::OrdersController < ApplicationController
     )
 
     @order.save
+
+  
     p @order.subtotal
     render 'show.json.jbuilder'
   end
