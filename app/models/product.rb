@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+  belongs_to :supplier
+  has_many :images
+  has_many :orders
+
   def is_discounted?
     price < 20
   end
@@ -11,11 +15,11 @@ class Product < ApplicationRecord
     price + tax
   end
 
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
 
-  def images
-    Image.where(product_id: id)
-  end
+  # def images
+  #   Image.where(product_id: id)
+  # end
 end
