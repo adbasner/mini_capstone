@@ -1,11 +1,11 @@
 require 'unirest'
 require 'faker'
 
-response = Unirest.post('http://localhost:3000/api/orders',
-    parameters: {
-      input_product_id: 25,
-      input_quantity: 2
-    })
+# response = Unirest.post('http://localhost:3000/api/orders',
+#     parameters: {
+#       input_product_id: 25,
+#       input_quantity: 2
+#     })
 
 # response = Unirest.get("http://localhost:3000/api/all_products_url")
 
@@ -113,3 +113,11 @@ response = Unirest.post('http://localhost:3000/api/orders',
 #   p response.body
 #   p '-' * 50
 # end
+
+response = Unirest.post('http://localhost:3000/api/carted_products',
+    parameters: {
+      product_id: 1,
+      quantity: 2
+    })
+
+p response.body
