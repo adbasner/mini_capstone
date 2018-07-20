@@ -31,4 +31,9 @@ class Api::CartedProductsController < ApplicationController
 
     render 'show.json.jbuilder'
   end
+
+  def update
+    # change status to purchased
+    # add correct order id
+  end
 end

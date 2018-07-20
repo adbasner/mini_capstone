@@ -6,25 +6,47 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
+    @all_carted_products = CartedProduct.all
+
+    @user_carted_products = []
+
+    # loop through
+    @all_carted_products.each do |carted_product|
+      if carted_product.status == 'carted' && carted_product.user_id == current_user.id
+        @user_carted_products << carted_product
+      end
+    end
+
+    subtotal = 0
+    @user_carted_products.each do |carted_product|
+
+      subtotal += (carted_product.product['price'].to_i * carted_product['quantity'].to_i)
+    end
+
     tax_rate = 0.07
-    product = Product.find_by(id: params[:input_product_id])
-    price = product.price * params[:input_quantity].to_i
-    tax = tax_rate * price
-    total = price + tax
+    tax = tax_rate * subtotal
+    total = subtotal + tax
 
     @order = Order.new(
       user_id: current_user.id,
-      product_id: params[:input_product_id],
-      quantity: params[:input_quantity],
-      subtotal: price,
+      subtotal: subtotal,
       tax: tax,
       total: total
     )
 
     @order.save
 
-  
-    p @order.subtotal
+    @user_carted_products.each do |carted_product|
+      cp = CartedProduct.find_by(id: carted_product.id)
+      cp.status = 'purchased'
+      cp.order_id = @order.id
+      cp.save
+    end
+    # loop through carted productsc
+    # cp = find by cp.id
+    # change the stuff
+    # save it
+
     render 'show.json.jbuilder'
   end
 end
