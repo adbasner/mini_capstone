@@ -1,4 +1,6 @@
 json.array! @products, partial: 'product', as: :product
+
+
 # json.array! @products.each do |product|
 #   json.id product.id
 #   json.name product.name
@@ -14,4 +16,4 @@ json.array! @products, partial: 'product', as: :product
 #     json.total product.total
 #   end
 # end
-#  
+#
