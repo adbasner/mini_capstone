@@ -19,7 +19,6 @@ class Api::OrdersController < ApplicationController
 
     subtotal = 0
     @user_carted_products.each do |carted_product|
-
       subtotal += (carted_product.product['price'].to_i * carted_product['quantity'].to_i)
     end
 
@@ -42,10 +41,6 @@ class Api::OrdersController < ApplicationController
       cp.order_id = @order.id
       cp.save
     end
-    # loop through carted productsc
-    # cp = find by cp.id
-    # change the stuff
-    # save it
 
     render 'show.json.jbuilder'
   end
