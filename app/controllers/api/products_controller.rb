@@ -1,8 +1,10 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
+  
   def index
     user_input = params[:search] || ''
     sort_by = params[:sort_by] || 'id'
-    
+  
     if params[:category]
       category = Category.find_by(name: params[:category])
       @products = category.products
@@ -26,8 +28,12 @@ class Api::ProductsController < ApplicationController
       description: params[:input_description],
       # image_url: params[:input_image_url]
     )
-    @product.save
-    render 'show.json.jbuilder'
+    
+    if @product.save
+      render 'show.json.jbuilder'
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessible_entity
+    end
   end
  
   def update
@@ -47,8 +53,12 @@ class Api::ProductsController < ApplicationController
     #   description: params[:input_description] || @product.description,
     #   image_url: params[:input_image_url] || @product.image_url
     # )
-    @product.save
-    render 'show.json.jbuilder'
+
+    if @product.save
+      render 'show.json.jbuilder'
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessible_entity
+    end
   end
 
   def destroy

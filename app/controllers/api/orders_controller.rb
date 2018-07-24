@@ -1,4 +1,6 @@
 class Api::OrdersController < ApplicationController
+  before_action :authenticate_user #, except: [:show]
+
   def show
     order_id = params[:id]
     @order = Order.find_by(id: order_id)
