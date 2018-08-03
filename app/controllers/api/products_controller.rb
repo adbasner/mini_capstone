@@ -71,3 +71,4 @@ class Api::ProductsController < ApplicationController
     render json: { message: 'You deleted that coffee.' }
   end
 end
+ 
