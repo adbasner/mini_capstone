@@ -15,6 +15,7 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { in: 10..500 }
 
+
   def is_discounted?
     price < 20
   end

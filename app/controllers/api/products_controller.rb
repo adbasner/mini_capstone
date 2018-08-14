@@ -26,6 +26,7 @@ class Api::ProductsController < ApplicationController
       name: params[:input_name],
       price: params[:input_price],
       description: params[:input_description],
+      supplier_id: params[:supplier_id]
       # image_url: params[:input_image_url]
     )
     

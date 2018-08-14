@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     # Orders
     # ---------------------------------
+    get '/orders/' => 'orders#index'
     get '/orders/:id' => 'orders#show'
     post '/orders/' => 'orders#create'
 
